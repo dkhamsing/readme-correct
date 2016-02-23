@@ -1,0 +1,12 @@
+correct: Mississippi
+incorrect:
+  - Missisipi
+  - Missisippi
+  - Mississipi
+pull_commit_message: Correct the spelling of Mississippi in README
+pull_request_title: Correct the spelling of Mississippi in README
+pull_request_description: |
+  This pull request corrects the spelling of **Mississippi** 🤓
+  https://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings/M
+
+  Created with [`readme-correct`](https://github.com/dkhamsing/readme-correct).

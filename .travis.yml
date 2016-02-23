@@ -1,0 +1,7 @@
+language: ruby
+rvm: 2.2
+install: bundle install
+script:
+  - bundle exec readme-correct
+  - rake install
+  - ruby test/find_typo.rb
