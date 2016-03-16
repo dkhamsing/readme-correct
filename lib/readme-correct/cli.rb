@@ -1,8 +1,7 @@
 module ReadmeCorrect
-  require 'readme-correct/version'
+  require 'readme-correct/config'
   require 'readme-correct/correct'
-
-  require 'yaml'
+  require 'readme-correct/version'
 
   class << self
     def cli
@@ -13,26 +12,7 @@ module ReadmeCorrect
         exit
       end
 
-      begin
-        c = YAML.load_file CONFIG
-      rescue
-        puts "Missing #{CONFIG} file"
-        exit
-      end
-
-      keys = [
-        'correct',
-        'incorrect',
-        'pull_commit_message',
-        'pull_request_title',
-        'pull_request_description'
-      ]
-
-      config = {}
-      keys.each do |k|
-        config[k] = c[k]
-        missing config[k], k
-      end
+      config = config()
 
       if ARGV.count == 0
         puts ''
@@ -42,6 +22,10 @@ module ReadmeCorrect
       end
 
       cli_repo = ARGV[0]
+      cli_correct cli_repo
+    end
+
+    def cli_correct(cli_repo)
       repo = cli_repo.sub 'https://github.com/', ''
       puts "Checking #{repo} ..."
 
@@ -51,24 +35,16 @@ module ReadmeCorrect
 
       if log.include? repo
         puts "Skipping #{repo}, already in log"
-        exit
-      end
+      else
+        # log the repo
+        File.open(logfile, 'a') { |f| f.puts repo }
 
-      # log the repo
-      File.open(logfile, 'a') { |f| f.puts repo }
-
-      correct repo,
-        config['correct'],
-        config['incorrect'],
-        config['pull_commit_message'],
-        config['pull_request_title'],
-        config['pull_request_description']
-    end
-
-    def missing(key, name)
-      if key.nil?
-        puts "Missing #{name} in #{CONFIG}"
-        exit
+        correct repo,
+          config['correct'],
+          config['incorrect'],
+          config['pull_commit_message'],
+          config['pull_request_title'],
+          config['pull_request_description']    
       end
     end
   end

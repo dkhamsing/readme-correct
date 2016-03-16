@@ -45,6 +45,14 @@ $ readme-correct dkarchive/Mississipi
 
 :tada:
 
+### Batch
+
+You can even correct in batches with `batch-correct`, the input is a file with repos (one repo per line).
+
+```
+$ batch-correct list.txt
+```
+
 ## Examples
 
 - https://github.com/rnpm/rnpm/pull/94
