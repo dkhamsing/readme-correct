@@ -6,6 +6,7 @@ module ReadmeCorrect
 
   class << self
     def is_incorrect(content, incorrect)
+      return false if content.nil?
       incorrect.each do |i|
         return true if content.include? i
       end
