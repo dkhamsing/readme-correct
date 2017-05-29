@@ -1,0 +1,11 @@
+correct: GitHub
+incorrect:
+  - Github
+pull_commit_message: Minor capitalization correction for GitHub in README
+pull_request_title: Minor capitalization correction for GitHub in README
+pull_request_description: |
+  GitHub uses a capital 'H' 🤓
+  https://github.com
+  ![](https://cloud.githubusercontent.com/assets/49038/26196161/fa47fb1a-3bb5-11e7-978f-29c4af682648.png)
+
+  Created with [`readme-correct`](https://github.com/dkhamsing/readme-correct).
